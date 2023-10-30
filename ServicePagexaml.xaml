@@ -34,7 +34,7 @@
                         <TextBlock>Размер скидки по убыванию</TextBlock>
                         <TextBlock>Размер скидки по возрастанию</TextBlock>
                         <TextBlock>Приоритет по убыванию</TextBlock>
-                        <TextBlock>Приоритет по возрастанию.</TextBlock>
+                        <TextBlock>Приоритет по возрастанию..</TextBlock>
                     </ComboBox>
                </AdornerDecorator>
                    
