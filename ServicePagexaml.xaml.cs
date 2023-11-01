@@ -140,7 +140,7 @@ namespace TokarevGlazki
         private void ChangePage(int direction, int? selectedPage)
         {
             CurrentPageList.Clear();
-            CountRecords = TableList.Count;
+            CountRecords = TableList.Count1;
             if (CountRecords % 10 > 0)
             {
                 CountPage = CountRecords / 10 + 1;
