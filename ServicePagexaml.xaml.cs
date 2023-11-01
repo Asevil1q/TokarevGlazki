@@ -150,6 +150,7 @@ namespace TokarevGlazki
                 CountPage = CountRecords / 10;
             }
             Boolean Ifupdate = true;
+            //aaa
             int min;
             if (selectedPage.HasValue)
             {
