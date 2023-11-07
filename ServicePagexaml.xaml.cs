@@ -22,7 +22,7 @@ namespace TokarevGlazki
     {
         int CountRecords;
         int CountPage;
-        int CurrentPage = 0;
+        int CurrentPage;
 
 
         List<Agent> CurrentPageList = new List<Agent>();
@@ -34,6 +34,8 @@ namespace TokarevGlazki
             InitializeComponent();
             var currentAgent = Tokarev_GlazkiSaveEntities.GetContext().Agent.ToList();
             AgentListView.ItemsSource = currentAgent;
+            TableList = currentAgent.ToList();
+            UpdatePage();
 
         }
         private void UpdatePage()
@@ -88,10 +90,7 @@ namespace TokarevGlazki
           
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MainFrame.Navigate(new AddEditPage());
-        }
+        
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -140,7 +139,7 @@ namespace TokarevGlazki
         private void ChangePage(int direction, int? selectedPage)
         {
             CurrentPageList.Clear();
-            CountRecords = TableList.Count1;
+            CountRecords = TableList.Count;
             if (CountRecords % 10 > 0)
             {
                 CountPage = CountRecords / 10 + 1;
@@ -150,14 +149,13 @@ namespace TokarevGlazki
                 CountPage = CountRecords / 10;
             }
             Boolean Ifupdate = true;
-            //aaa
             int min;
             if (selectedPage.HasValue)
             {
                 if (selectedPage >= 0 && selectedPage <= CountPage)
                 {
                     CurrentPage = (int)selectedPage;
-                    min = CurrentPage * 10 + 10 < CountRecords ? CountPage * 10 + 10 : CountRecords;
+                    min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
                     for (int i = CurrentPage * 10; i < min; i++)
                     {
                         CurrentPageList.Add(TableList[i]);
@@ -231,6 +229,11 @@ namespace TokarevGlazki
         private void LeftDirButton_Click(object sender, RoutedEventArgs e)
         {
             ChangePage(1, null);
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage());
         }
     }
 }
