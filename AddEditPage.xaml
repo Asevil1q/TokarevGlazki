@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TokarevGlazki"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddEditPage">
+      Title="AddEditPage" Cursor="AppStarting">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -40,16 +40,15 @@
             <Image Name="LogoImage" Stretch="UniformToFill" MinHeight="50" Height="100" Width="100"
                    HorizontalAlignment="Center" Margin="5">
                 <Image.Source>
-                    <Binding Path="Logo" TargetNullValue="Resources\picture.png"></Binding>
+                    <Binding Path="Logo" TargetNullValue= "Resources\picture.png" ></Binding>
                 </Image.Source>
             </Image>
-            <Button Content="Изменить" Name="ChangePictureBtn" Click="ChangePictureBtn_Click"></Button>
+            <Button Content="Изменить" Name="ChangePictureBtn" Click="ChangePictureBtn_Click" Background="#B175EE" ></Button>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
             <TextBlock Text="Тип агента" FontSize="15" Height="20" Width="100" Margin="5"></TextBlock>
-            <ComboBox FontSize="15" Height="25" Width="100" Name="ComboType"
-                      Text="{Binding AgentTypeID}">
+            <ComboBox FontSize="15" Height="25" Width="100" Name="ComboType">
                 <TextBlock Text="МФО"/>
                 <TextBlock Text="ООО"/>
                 <TextBlock Text="ЗАО"/>
@@ -81,10 +80,9 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal">
-            <Button Content="Сохранить" Name="SaveBtn" Click="SaveBtn_Click" Margin="5"></Button>
-            <Button Content="Удалить" Name="DeleteBtn" Click="DeleteBtn_Click" Margin="5"
+            <Button Content="Сохранить" Name="SaveBtn" Click="SaveBtn_Click" Margin="5" Background="#B175EE"></Button>
+            <Button Content="Удалить" Name="DeleteBtn" Click="DeleteBtn_Click" Margin="5" Background="#B175EE"
                     Opacity="{Binding ID}"></Button>
         </StackPanel>
-
     </Grid>
 </Page>

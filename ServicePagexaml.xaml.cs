@@ -233,7 +233,29 @@ namespace TokarevGlazki
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditPage());
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Tokarev_GlazkiSaveEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                AgentListView.ItemsSource = Tokarev_GlazkiSaveEntities.GetContext().Agent.ToList();
+            }
+            UpdatePage();
+        }
+
+ 
+
+        private void Edit_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
+        }
+
+        private void Delete_Btn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

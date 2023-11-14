@@ -23,18 +23,23 @@ namespace TokarevGlazki
     {
         private Agent currentAgent = new Agent();
 
-        public AddEditPage(Agent agent)
-        {
-            InitializeComponent();
-            
-        }
 
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
+        public AddEditPage(Agent SelectedAgent)
+        {
+            InitializeComponent();
+            if (SelectedAgent != null)
+            {
+                currentAgent = SelectedAgent;
+                ComboType.SelectedIndex = currentAgent.AgentTypeID + 1;
+            }
 
+            DataContext = currentAgent;
+        }
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TokarevGlazki"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ServicePagexaml"> 
+      Title="ServicePagexaml" IsVisibleChanged="Page_IsVisibleChanged"> 
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <TextBlock Name="TBCount" FontSize="20" Height="30"></TextBlock>
             <TextBlock Name="TBAllRecords" FontSize="20" Height="30"></TextBlock>
-            <Button Name="LeftDirButton" Content="&lt;" Width="20" Height="30" 
+            <Button Name="LeftDirButton" Content="&lt;" Width="20" Height="30" Background="#B175EE" 
                    Click="LeftDirButton_Click"></Button>
             
             <ListBox FontSize="20" Name="PageListBox" MouseUp="PageListBox_MouseUp">
@@ -29,7 +29,7 @@
                 </ListBox.ItemsPanel>
             </ListBox>
             <Button Name="RightDirButton" Content="&gt;" Width="20" Height="30"
-                    Click="RightDirButton_Click"></Button>
+                    Click="RightDirButton_Click" Background="#B175EE"></Button>
         </StackPanel>
         
         
@@ -72,7 +72,7 @@
             </StackPanel>
         </StackPanel>
         <Button Content="Добавить" Name="AddButton" Click="AddButton_Click"
-                HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#B175EE"></Button>
         <ListView Name="AgentListView" Grid.Row="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -105,7 +105,7 @@
                         </StackPanel>
                         <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" FontSize="20"></TextBlock>
                         <TextBlock Text="{Binding Priority}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="16"></TextBlock>
-                        
+                        <Button Grid.Column="1" Grid.Row="4" Content="Редактировать" Name="Edit_Btn" Click="Edit_Btn_Click" HorizontalAlignment="Right" Background="#B175EE"></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
