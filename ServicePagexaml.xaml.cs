@@ -36,12 +36,12 @@ namespace TokarevGlazki
             AgentListView.ItemsSource = currentAgent;
             TableList = currentAgent.ToList();
             UpdatePage();
-
         }
+
         private void UpdatePage()
         {
             var currentGlazki = Tokarev_GlazkiSaveEntities.GetContext().Agent.ToList();
-            currentGlazki = currentGlazki.Where(p => (p.Title.ToLower().Contains(TBSearch.Text.ToLower()))).ToList();
+            currentGlazki = currentGlazki.Where(p =>(p.Title.ToLower().Contains(TBSearch.Text.ToLower()))).ToList();
 
             if (Sortirovka.SelectedIndex == 1)
             {

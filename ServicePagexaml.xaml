@@ -103,9 +103,10 @@
                             <TextBlock Text="   |   " Grid.Column="1" Grid.Row="0"></TextBlock>
                             <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                         </StackPanel>
-                        <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" FontSize="20"></TextBlock>
-                        <TextBlock Text="{Binding Priority}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="16"></TextBlock>
-                        <Button Grid.Column="1" Grid.Row="4" Content="Редактировать" Name="Edit_Btn" Click="Edit_Btn_Click" HorizontalAlignment="Right" Background="#B175EE"></Button>
+                        <TextBlock Text="{Binding ProductCount}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="30"></TextBlock>
+                        <TextBlock Text="{Binding Priority, StringFormat=Приоритетность: {0}}"  Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+                        <Button Grid.Column="1" Grid.Row="3" Content="Редактировать" Name="Edit_Btn" Click="Edit_Btn_Click" HorizontalAlignment="Left" Background="#B175EE"></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
