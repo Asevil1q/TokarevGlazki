@@ -111,6 +111,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="3" Width="560" Margin="-6,0,0,0">
+            <Button Name="SalesButton" Content="Реализация продукции" Width="250" Click="SalesButton_Click" Background="#B175EE" ></Button>
+            <Button Name="ChangePriorityButton" Content="изменить приоритет" Margin="2" Width="250" Click="ChangePriorityButton_Click" Background="#B175EE"  ></Button>
+        </StackPanel>
+        
        
     </Grid>
 </Page>

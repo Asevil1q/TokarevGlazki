@@ -22,11 +22,12 @@ namespace TokarevGlazki
     {
         int CountRecords;
         int CountPage;
-        int CurrentPage;
+        int CurrentPage = 0;
 
 
         List<Agent> CurrentPageList = new List<Agent>();
         List<Agent> TableList;
+
 
 
         public ServicePagexaml()
@@ -242,8 +243,8 @@ namespace TokarevGlazki
             {
                 Tokarev_GlazkiSaveEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 AgentListView.ItemsSource = Tokarev_GlazkiSaveEntities.GetContext().Agent.ToList();
+                UpdatePage();
             }
-            UpdatePage();
         }
 
  
@@ -256,6 +257,41 @@ namespace TokarevGlazki
         private void Delete_Btn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void SalesButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChangePriorityButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 window1 = new Window1(); window1.ShowDialog();
+            if (string.IsNullOrEmpty(window1.PriorityTB.Text)) return; MessageBox.Show(window1.PriorityTB.Text);
+            foreach (Agent agent in AgentListView.SelectedItems)
+            {
+                agent.Priority = Convert.ToInt32(window1.PriorityTB.Text);
+            }
+            try
+            {
+                Tokarev_GlazkiSaveEntities.GetContext().SaveChanges(); MessageBox.Show("информация сохранена");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            UpdatePage();
+        }
+        private void AgentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AgentListView.SelectedItems.Count > 1)
+            {
+                ChangePriorityButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ChangePriorityButton.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
