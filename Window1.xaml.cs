@@ -28,7 +28,7 @@ namespace TokarevGlazki
         {
             if (!string.IsNullOrEmpty(PriorityTB.Text))
                 Close();
-            else MessageBox.Show("Введите новый приоритет", "Ошибка!");
+            else MessageBox.Show("Введите новый приоритет", "Ошибка!");//
         }
         private void Close()
         {
