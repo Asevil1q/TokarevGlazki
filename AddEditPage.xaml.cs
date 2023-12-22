@@ -145,5 +145,12 @@ namespace TokarevGlazki
                 LogoImage.Source = new BitmapImage(new Uri(myopenFileDialog.FileName));
             }
         }
+
+ 
+
+        private void SalesButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new SalesHistory((sender as Button).DataContext as Agent));
+        }
     }
 }

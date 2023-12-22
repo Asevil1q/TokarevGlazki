@@ -83,6 +83,7 @@
             <Button Content="Сохранить" Name="SaveBtn" Click="SaveBtn_Click" Margin="5" Background="#B175EE"></Button>
             <Button Content="Удалить" Name="DeleteBtn" Click="DeleteBtn_Click" Margin="5" Background="#B175EE"
                     Opacity="{Binding ID}"></Button>
+            <Button Name="SalesButton" Content="Реализация продукции"   Click="SalesButton_Click" Margin="5" Background="#B175EE" Width="250"></Button>
         </StackPanel>
     </Grid>
 </Page>

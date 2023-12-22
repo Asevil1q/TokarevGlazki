@@ -261,7 +261,7 @@ namespace TokarevGlazki
 
         private void SalesButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Manager.MainFrame.Navigate(new SalesHistory((sender as Button).DataContext as Agent));
         }
 
         private void ChangePriorityButton_Click(object sender, RoutedEventArgs e)
