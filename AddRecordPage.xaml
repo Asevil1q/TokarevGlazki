@@ -35,6 +35,6 @@
             <TextBox x:Name="ProductCount" Text="{Binding ProductCount}" Height="20" Width="80"></TextBox>
         </StackPanel>
 
-        <Button Grid.Row="3" Content="Сохранить" Name="SaveSaleButton" Click="SaveSaleButton_Click"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10"></Button>
+        <Button Grid.Row="3" Content="Сохранить" Name="SaveSaleButton" Click="SaveSaleButton_Click"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Background="#B175EE"></Button>
     </Grid>
 </Page>

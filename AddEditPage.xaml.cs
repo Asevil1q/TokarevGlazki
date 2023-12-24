@@ -21,7 +21,7 @@ namespace TokarevGlazki
     /// </summary>
     public partial class AddEditPage : Page
     {
-        private Agent currentAgent = new Agent();
+        private Agent _currentAgent = new Agent();
 
 
 
@@ -58,24 +58,32 @@ namespace TokarevGlazki
             InitializeComponent();
             if (SelectedAgent != null)
             {
-                currentAgent = SelectedAgent;
-                ComboType.SelectedIndex = currentAgent.AgentTypeID + 1;
+                _currentAgent = SelectedAgent;
+                ComboType.SelectedIndex = _currentAgent.AgentTypeID + 1;
             }
 
-            DataContext = currentAgent;
+            DataContext = _currentAgent;
         }
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(currentAgent.Title))
+            var context = Tokarev_GlazkiSaveEntities.GetContext();
+
+            if (string.IsNullOrWhiteSpace(_currentAgent.Title))
             {
-                errors.AppendLine("Укажите наименование агента");
+                errors.AppendLine("Укажите название услуги");
             }
-            if (string.IsNullOrWhiteSpace(currentAgent.Address))
+            else if (context.Agent.Any(agent => agent.Title == _currentAgent.Title && agent.ID != _currentAgent.ID))
             {
-                errors.AppendLine("Укажите адрес агента");
+                errors.AppendLine("Уже существует такая услуга");
             }
-            if (string.IsNullOrWhiteSpace(currentAgent.DirectorName))
+
+            if (string.IsNullOrWhiteSpace(_currentAgent.Address))
+            {
+                errors.AppendLine("Укажите адрес услуги");
+            }
+
+            if (string.IsNullOrWhiteSpace(_currentAgent.DirectorName))
             {
                 errors.AppendLine("Укажите ФИО директора");
             }
@@ -85,44 +93,55 @@ namespace TokarevGlazki
             }
             else
             {
-                currentAgent.AgentTypeID = ComboType.SelectedIndex - 1;
+                _currentAgent.AgentTypeID = ComboType.SelectedIndex + 1;
             }
-            if (string.IsNullOrWhiteSpace(currentAgent.Priority.ToString()))
+
+            if (string.IsNullOrWhiteSpace(_currentAgent.Priority.ToString()))
             {
-                errors.AppendLine("Укажите приоритет");
+                errors.AppendLine("Укажите приоритет агента");
             }
-            if (currentAgent.Priority <= 0)
+            if (_currentAgent.Priority <= 0)
             {
                 errors.AppendLine("Укажите положительный приоритет агента");
             }
-            if (string.IsNullOrWhiteSpace(currentAgent.INN))
+
+            if (string.IsNullOrWhiteSpace(_currentAgent.INN))
             {
-                errors.AppendLine("Укажите инн агента");
+                errors.AppendLine("Укажите ИНН агента");
             }
-            if (string.IsNullOrWhiteSpace(currentAgent.KPP))
+
+            if (string.IsNullOrWhiteSpace(_currentAgent.KPP))
             {
                 errors.AppendLine("Укажите КПП агента");
             }
-            if (string.IsNullOrWhiteSpace(currentAgent.Phone))
+
+            if (string.IsNullOrWhiteSpace(_currentAgent.Phone))
             {
-                errors.AppendLine("Укажите телефон агкента");
+                errors.AppendLine("Укажите телефон агента");
             }
             else
             {
-                string ph = currentAgent.Phone.Replace("(", "").Replace("-", "").Replace("+", "");
-                if (((ph[1] == '9' || ph[1] == '4' || ph[1] == '8') && ph.Length != 11)
-                    || (ph[1] == '3' && ph.Length != 12))
-                    errors.AppendLine("Укажите правильно телефон агента");
+                string ph = _currentAgent.Phone.Replace("(", "").Replace("-", "").Replace("+", "").Replace(")", "").Replace(" ", "");
+                if (ph.Length > 1)
+                {
+                    if (((ph[1] == '9' || ph[1] == '4' || ph[1] == '8') && ph.Length != 10) || (ph[1] == '3' && ph.Length != 11))
+                        errors.AppendLine("Укажите правильно телефон агента");
+                }
+                else if (ph[0] != 8 || ph[0] != 7) errors.AppendLine("Укажите правильно телефон агента");
             }
-            if (string.IsNullOrWhiteSpace(currentAgent.Email))
+
+            if (string.IsNullOrWhiteSpace(_currentAgent.Email))
+            {
                 errors.AppendLine("Укажите почту агента");
+            }
+
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-            if (currentAgent.ID == 0)
-                Tokarev_GlazkiSaveEntities.GetContext().Agent.Add(currentAgent);
+            if (_currentAgent.ID == 0)
+                Tokarev_GlazkiSaveEntities.GetContext().Agent.Add(_currentAgent);
 
             try
             {

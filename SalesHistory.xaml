@@ -24,8 +24,8 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Name="AddButton" Content="Добавить" Click="AddButton_Click" Margin="10"></Button>
-            <Button Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Margin="10"></Button>
+            <Button Name="AddButton" Content="Добавить" Click="AddButton_Click" Margin="10" Background="#B175EE"></Button>
+            <Button Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Margin="10" Background="#B175EE"></Button>
         </StackPanel>
     </Grid>
 </Page>

@@ -243,8 +243,8 @@ namespace TokarevGlazki
             {
                 Tokarev_GlazkiSaveEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 AgentListView.ItemsSource = Tokarev_GlazkiSaveEntities.GetContext().Agent.ToList();
-                UpdatePage();
             }
+            UpdatePage();
         }
 
  
@@ -266,15 +266,28 @@ namespace TokarevGlazki
 
         private void ChangePriorityButton_Click(object sender, RoutedEventArgs e)
         {
-            Window1 window1 = new Window1(); window1.ShowDialog();
-            if (string.IsNullOrEmpty(window1.PriorityTB.Text)) return; MessageBox.Show(window1.PriorityTB.Text);
+            int max = 0;
             foreach (Agent agent in AgentListView.SelectedItems)
             {
-                agent.Priority = Convert.ToInt32(window1.PriorityTB.Text);
+                if (agent.Priority >= max)
+                {
+                    max = agent.Priority;
+                }
+            }
+            Window1 window = new Window1(max);
+            window.ShowDialog();
+            if (string.IsNullOrEmpty(window.PriorityTB.Text)) return;
+            MessageBox.Show(window.PriorityTB.Text);
+
+            foreach (Agent agent in AgentListView.SelectedItems)
+            {
+
+                agent.Priority = Convert.ToInt32(window.PriorityTB.Text);
             }
             try
             {
-                Tokarev_GlazkiSaveEntities.GetContext().SaveChanges(); MessageBox.Show("информация сохранена");
+                Tokarev_GlazkiSaveEntities.GetContext().SaveChanges();
+                MessageBox.Show("информация сохранена");
             }
             catch (Exception ex)
             {

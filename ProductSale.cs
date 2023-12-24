@@ -17,6 +17,15 @@ namespace TokarevGlazki
         public int ID { get; set; }
         public int AgentID { get; set; }
         public int ProductID { get; set; }
+
+        public string ProductTitle
+        {
+            get
+            {
+                return Product.Title;
+            }
+        }
+
         public System.DateTime SaleDate { get; set; }
         public int ProductCount { get; set; }
     

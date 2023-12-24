@@ -19,20 +19,16 @@ namespace TokarevGlazki
     /// </summary>
     public partial class Window1 : Window
     {
-        public Window1()
+        public Window1(int max)
         {
             InitializeComponent();
+            PriorityTB.Text = max.ToString();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(PriorityTB.Text))
-                Close();
-            else MessageBox.Show("Введите новый приоритет", "Ошибка!");//
-        }
-        private void Close()
-        {
-            throw new NotImplementedException();
+            if (!string.IsNullOrEmpty(PriorityTB.Text)) Close();
+            else MessageBox.Show("Введите новый приоритет", "Ошибка!");
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

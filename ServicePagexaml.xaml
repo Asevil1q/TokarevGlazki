@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TokarevGlazki"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ServicePagexaml" IsVisibleChanged="Page_IsVisibleChanged"> 
+      Title="ServicePagexaml" FontFamily="Century Gothic" IsVisibleChanged="Page_IsVisibleChanged"> 
 
     <Grid>
         <Grid.RowDefinitions>
@@ -73,20 +73,40 @@
         </StackPanel>
         <Button Content="Добавить" Name="AddButton" Click="AddButton_Click"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#B175EE"></Button>
-        <ListView Name="AgentListView" Grid.Row="2">
+        <ListView Name="AgentListView" Grid.Row="2" SelectionChanged="AgentListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Background="{Binding FonStyle}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="1000"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock Text="{Binding AgentTypeString,StringFormat= {}{0} |}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                            <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right"  FontSize="20"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                            <TextBlock Text="{Binding Sales}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="15" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text=" продаж за год" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="15" TextWrapping="Wrap"></TextBlock>
+                        </StackPanel>
+                        <TextBlock Text="{Binding Priority,StringFormat=Приоритетность: {0}}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="2   " HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
+                            <Button Name="Edit_Btn" Content="редактировать" Margin="2" Click="Edit_Btn_Click"  Background="#B175EE"></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2">
+                            <TextBlock Text="{Binding SalePercent}" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="%" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap"></TextBlock>
+                        </StackPanel>
                         <Image Width="200" Grid.Column="0" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center">
                             <Image.Source>
                                 <Binding Path="Logo">
@@ -98,29 +118,10 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
-                            <TextBlock Text="{Binding AgentTypeString}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="   |   " Grid.Column="1" Grid.Row="0"></TextBlock>
-                            <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="20"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                            <TextBlock Text="{Binding ProductCount}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="15" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text=" продаж за год" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="15" TextWrapping="Wrap"></TextBlock>
-                        </StackPanel>
-                        <TextBlock Text="{Binding ProductCount}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
-                        <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="30"></TextBlock>
-                        <TextBlock Text="{Binding Priority, StringFormat=Приоритетность: {0}}"  Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
-                        <Button Grid.Column="1" Grid.Row="3" Content="Редактировать" Name="Edit_Btn" Click="Edit_Btn_Click" HorizontalAlignment="Left" Background="#B175EE"></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="3" Width="560" Margin="-6,0,0,0">
-            <Button Name="SalesButton" Content="Реализация продукции" Width="250" Click="SalesButton_Click" Background="#B175EE" ></Button>
-            <Button Name="ChangePriorityButton" Content="изменить приоритет" Margin="2" Width="250" Click="ChangePriorityButton_Click" Background="#B175EE"  ></Button>
-        </StackPanel>
-        
-       
+        <Button  Name="ChangePriorityButton" Content="изменить приоритет" Margin="2" Width="220"  Grid.Row="4" HorizontalAlignment="Left" Click="ChangePriorityButton_Click" Visibility="Hidden" Background="#B175EE"></Button>
     </Grid>
 </Page>
